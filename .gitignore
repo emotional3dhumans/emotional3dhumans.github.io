@@ -1,0 +1,105 @@
+# Jekyll build files
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler
+vendor/
+.bundle/
+Gemfile.lock
+
+# Ruby version management
+.ruby-version
+.ruby-gemset
+
+# Node.js (if using)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Image workflow - keep only ultra high-quality versions
+# Original PDF files (converted to PNG)
+media/*.pdf
+
+# Lower quality PNG versions (keep only crisp versions)
+media/system.png
+media/system_hq.png
+media/system_ultra_hq.png
+media/teaser.png
+media/teaser_hq.png
+media/teaser_ultra_hq.png
+
+# Keep only these ultra high-quality versions:
+# media/system_crisp-1.png
+# media/teaser_crisp-1.png
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# System files
+.fseventsd
+.DocumentRevisions-V100
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Xcode (in case of iOS development)
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+# Windows
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+*.temp
+
+# Backup files
+*.bak
+*.backup
+
+# Cache directories
+.cache/

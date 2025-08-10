@@ -1,0 +1,289 @@
+---
+layout: default
+title: "Emotional 3D Animation Generation in VR"
+description: "Evaluation of Generative Models for Emotional 3D Animation Generation in VR"
+---
+
+<header>
+    <div class="container">
+        <h1 class="title"><span class="emotional-text">Emotional</span> 3D Humans</h1>
+        <h2 class="subtitle">Evaluation of Generative Models for Emotional 3D Animation Generation in VR</h2>
+        
+        <div class="authors">
+            <a href="https://chhatrekiran.github.io/" class="author-link" target="_blank">Kiran Chhatre</a>&nbsp;&nbsp;&nbsp;
+            <a href="https://renghp.github.io/" class="author-link" target="_blank">Renan Guarese</a>&nbsp;&nbsp;&nbsp;
+            <a href="http://andriimatviienko.com/" class="author-link" target="_blank">Andrii Matviienko</a>&nbsp;&nbsp;&nbsp;
+            <a href="https://www.kth.se/profile/chpeters" class="author-link" target="_blank">Christopher Peters</a>
+        </div>
+        
+        <div class="affiliations">
+            <a href="https://www.kth.se/en" class="affiliation-link" target="_blank">KTH Royal Institute of Technology</a>
+        </div>
+        
+        <div class="paper-links">
+            <a href="https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2025.1598099/full" class="paper-btn" target="_blank">
+                Frontiers (Human-Media Interaction)
+            </a>
+            <a href="https://dl.acm.org/doi/abs/10.1145/3722564.3728374" class="paper-btn" target="_blank">
+                ACM SIGGRAPH I3D
+            </a>
+            <a href="https://www.frontiersin.org/api/v4/articles/1598099/file/Data_Sheet_1.pdf/1598099_data-sheet_1/1" class="paper-btn" target="_blank">
+                Supp. Material
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Teaser Figure Section -->
+<div class="section">
+    <div class="container">
+        <div class="teaser-container">
+            <img src="media/system_crisp-1.png" alt="Evaluation of generative Models for emotional 3D animation in VR" style="width: 100%; max-width: 1600px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <div class="teaser-caption" style="margin-top: 16px; font-size: 0.9rem; line-height: 1.5; color: #666;">
+                <strong>Evaluation of generative Models for emotional 3D animation in VR.</strong> 
+                Participants interact with a virtual character using VR headsets in a modular setup supporting various TTS models and speech-driven 3D animation methods. The setup tracks participant positions via base stations, uses tablets for input recording, and renders real-time VR interactions through Blender (OpenXR).
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Abstract Section -->
+    <div class="section">
+        <h2>Abstract</h2>
+        <p class="abstract">
+            Social interactions incorporate various nonverbal signals to convey emotions alongside speech, including facial expressions and body gestures. Generative models have demonstrated promising results in creating full-body nonverbal animations synchronized with speech; however, evaluations using statistical metrics in 2D settings fail to fully capture user-perceived emotions, limiting our understanding of the effectiveness of these models. To address this, we evaluate emotional 3D animation generative models within an immersive Virtual Reality (VR) environment, emphasizing user-centric metrics—emotional arousal realism, naturalness, enjoyment, diversity, and interaction quality—in a real-time human–agent interaction scenario. Through a user study (<em>N=48</em>), we systematically examine perceived emotional quality for three state-of-the-art speech-driven 3D animation methods across two specific emotions: happiness (high arousal) and neutral (mid arousal). Additionally, we compare these generative models against real human expressions obtained via a reconstruction-based method to assess both their strengths and limitations and how closely they replicate real human facial and body expressions. Our results demonstrate that methods explicitly modeling emotions lead to higher recognition accuracy compared to those focusing solely on speech-driven synchrony. Users rated the realism and naturalness of happy animations significantly higher than those of neutral animations, highlighting the limitations of current generative models in handling subtle emotional states. Generative models underperformed compared to reconstruction-based methods in facial expression quality, and all methods received relatively low ratings for animation enjoyment and interaction quality, emphasizing the importance of incorporating user-centric evaluations into generative model development. Finally, participants positively recognized animation diversity across all generative models.
+        </p>
+    </div>
+
+    <!-- Video Section -->
+    <div class="section">
+        <h2>Video</h2>
+        <div class="video-container">
+            <div class="video-embed">
+                <iframe id="kmsembed-0_q1e7393r" 
+                        src="https://play.kth.se/embed/secure/iframe/entryId/0_q1e7393r/uiConfId/23453971/st/0" 
+                        class="kmsembed" 
+                        allowfullscreen 
+                        webkitallowfullscreen 
+                        mozAllowFullScreen 
+                        allow="autoplay *; fullscreen *; encrypted-media *" 
+                        referrerPolicy="no-referrer-when-downgrade" 
+                        sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" 
+                        title="Evaluation of Generative Models for Emotional 3D Animation Generation in VR">
+                </iframe>
+            </div>
+            <div class="video-caption" style="margin-top: 16px; font-size: 0.9rem; line-height: 1.5; color: #666;">
+                <strong>Supplementary video overview.</strong> 
+                VR-based interaction demonstrations with state-of-the-art gesture generation methods, method comparisons across HEA/NEA/DV conditions, quality analysis focusing on HEA condition, side-by-side HEA vs NEA emotion comparison, and reconstruction sequences from real human driving video.
+            </div>
+        </div>
+    </div>
+
+    <!-- Qualitative Evaluation Section -->
+    <div class="section">
+        <h2>Qualitative Evaluation</h2>
+        <div style="text-align: center;">
+            <img src="media/teaser_crisp-1.png" alt="Qualitative evaluation" style="width: 100%; max-width: 1400px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin-bottom: 16px;">
+            <div class="qualitative-caption" style="font-size: 0.9rem; line-height: 1.5; color: #666; text-align: left; max-width: 1400px; margin: 0 auto;">
+                <strong>Qualitative evaluation.</strong> 
+                Top: Animation frames from EMAGE, TalkSHOW, and AMUSE+FaceFormer methods. Bottom: Reconstruction-based baseline workflow using PIXIE+DECA for pose parameters, normal maps, and textures from driving video input.
+            </div>
+        </div>
+    </div>
+
+    <!-- Citation Section -->
+    <div class="section">
+        <h2>Citation</h2>
+        
+        <div class="bibtex-container">
+            <div class="bibtex" id="bibtex-combined">@article{chhatre2025evaluation,
+  title={Evaluation of Generative Models for Emotional 3D Animation Generation in VR},
+  author={Chhatre, Kiran and Guarese, Renan and Matviienko, Andrii and Peters, Christopher Edward},
+  journal={Frontiers in Computer Science},
+  volume={7},
+  pages={1598099},
+  year={2025},
+  publisher={Frontiers}
+}
+
+@inproceedings{chhatre2025evaluating,
+  title={Evaluating Speech and Video Models for Face-Body Congruence},
+  author={Chhatre, Kiran and Guarese, Renan and Matviienko, Andrii and Peters, Christopher},
+  booktitle={Companion Proceedings of the ACM SIGGRAPH Symposium on Interactive 3D Graphics and Games},
+  pages={1--3},
+  year={2025}
+}</div>
+            <button class="copy-btn" onclick="copyBibtex('bibtex-combined', this)">Copy BibTeX</button>
+        </div>
+    </div>
+
+    <!-- Additional Related Projects Section -->
+    <div class="section">
+        <h2>Additional Related Projects</h2>
+        
+        <!-- Project 1: Synthetically Expressive -->
+        <div class="simple-project">
+            <div class="project-gif">
+                <img src="media/syn_expressive.png" alt="Synthetically Expressive">
+            </div>
+            <div class="project-info">
+                <div class="project-title">Synthetically Expressive: Evaluating gesture and voice for emotion and empathy in VR and 2D scenarios</div>
+                <div class="project-authors">
+                    <a href="https://scholar.google.com/citations?user=RtcqbTYAAAAJ&hl=en">Haoyang Du</a>, 
+                    <a href="https://chhatrekiran.github.io/" target="_blank">Kiran Chhatre</a>, 
+                    <a href="https://www.kth.se/profile/chpeters">Christopher Peters</a>, 
+                    <a href="https://scholar.google.com/citations?user=u8gU-a8AAAAJ&hl=en">Brian Keegan</a>, 
+                    <a href="https://www.scss.tcd.ie/Rachel.McDonnell/">Rachel McDonnell</a>, 
+                    <a href="https://scholar.google.com/citations?user=cVXokFkAAAAJ&hl=en">Cathy Ennis</a>
+                </div>
+                <div class="project-venue">ACM International Conference on Intelligent Virtual Agents (IVA), 2025</div>
+                <div class="project-buttons">
+                    <a href="https://hydu0016.github.io/Synthetically-Expressive/" target="_blank">website</a> / 
+                    <a href="https://arxiv.org/abs/2506.23777" target="_blank">arxiv</a> / 
+                    <a href="https://youtu.be/WMfjIB1X-dc?si=sgx1Y33mIuriA6Li" target="_blank">video</a> / 
+                    <button class="bibtex-toggle-btn" onclick="toggleBibtex('bibtex-synthetically')">BibTeX</button>
+                </div>
+                <div class="bibtex-container" style="margin-top: 12px;">
+                    <div class="bibtex" id="bibtex-synthetically" style="display: none;">@article{du2025synthetically,
+  title={Synthetically Expressive: Evaluating gesture and voice for emotion and empathy in VR and 2D scenarios},
+  author={Du, Haoyang and Chhatre, Kiran and Peters, Christopher and Keegan, Brian and McDonnell, Rachel and Ennis, Cathy},
+  journal={arXiv preprint arXiv:2506.23777},
+  year={2025}
+}</div>
+                    <button class="copy-btn" onclick="copyBibtex('bibtex-synthetically', this)" style="display: none;" id="copy-synthetically">Copy BibTeX</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2: AMUSE -->
+        <div class="simple-project">
+            <div class="project-gif">
+                <img src="media/amuse.gif" alt="AMUSE">
+            </div>
+            <div class="project-info">
+                <div class="project-title">AMUSE: Emotional Speech-driven 3D Body Animation via Disentangled Latent Diffusion</div>
+                <div class="project-authors">
+                    <a href="https://chhatrekiran.github.io/" target="_blank">Kiran Chhatre</a>, 
+                    <a href="https://ps.is.tuebingen.mpg.de/person/rdanecek">Radek Daněček</a>, 
+                    <a href="https://ps.is.tuebingen.mpg.de/person/nathanasiou">Nikos Athanasiou</a>, 
+                    <a href="https://ps.is.tuebingen.mpg.de/person/gbecherini">Giorgio Becherini</a>, 
+                    <a href="https://www.kth.se/profile/chpeters">Christopher Peters</a>, 
+                    <a href="https://ps.is.tuebingen.mpg.de/person/black">Michael J. Black</a>, 
+                    <a href="https://sites.google.com/site/bolkartt">Timo Bolkart</a>
+                </div>
+                <div class="project-venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2024</div>
+                <div class="project-buttons">
+                    <a href="https://amuse.is.tue.mpg.de/" target="_blank">website</a> / 
+                    <a href="https://arxiv.org/abs/2312.04466" target="_blank">arxiv</a> / 
+                    <a href="https://github.com/kiranchhatre/amuse" target="_blank">code</a> / 
+                    <a href="https://www.youtube.com/watch?v=gsEt9qtR1jk&ab_channel=MichaelBlack" target="_blank">video</a> / 
+                    <button class="bibtex-toggle-btn" onclick="toggleBibtex('bibtex-amuse')">BibTeX</button>
+                </div>
+                <div class="bibtex-container" style="margin-top: 12px;">
+                    <div class="bibtex" id="bibtex-amuse" style="display: none;">@InProceedings{Chhatre_2024_CVPR,
+    author    = {Chhatre, Kiran and Daněček, Radek and Athanasiou, Nikos and Becherini, Giorgio and Peters, Christopher and Black, Michael J. and Bolkart, Timo},
+    title     = {AMUSE: Emotional Speech-driven 3D Body Animation via Disentangled Latent Diffusion},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2024},
+    pages     = {1942-1953},
+    url = {https://amuse.is.tue.mpg.de},
+}</div>
+                    <button class="copy-btn" onclick="copyBibtex('bibtex-amuse', this)" style="display: none;" id="copy-amuse">Copy BibTeX</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: EMOTE -->
+        <div class="simple-project">
+            <div class="project-gif">
+                <img src="media/emote.gif" alt="EMOTE">
+            </div>
+            <div class="project-info">
+                <div class="project-title">EMOTE: Emotional Speech-Driven Animation with Content-Emotion Disentanglement</div>
+                <div class="project-authors">
+                    <a href="https://ps.is.tuebingen.mpg.de/person/rdanecek">Radek Daněček</a>, 
+                    <a href="https://chhatrekiran.github.io/" target="_blank">Kiran Chhatre</a>, 
+                    <a href="https://sha2nkt.github.io/">Shashank Tripathi</a>, 
+                    <a href="https://ydwen.github.io/">Yandong Wen</a>, 
+                    <a href="https://ps.is.tuebingen.mpg.de/person/black">Michael J. Black</a>, 
+                    <a href="https://sites.google.com/site/bolkartt">Timo Bolkart</a>
+                </div>
+                <div class="project-venue">ACM SIGGRAPH Asia Conference Papers, 2023</div>
+                <div class="project-buttons">
+                    <a href="https://emote.is.tue.mpg.de/" target="_blank">website</a> / 
+                    <a href="https://arxiv.org/abs/2306.08990" target="_blank">arxiv</a> / 
+                    <a href="https://github.com/radekd91/inferno/tree/release/EMOTE/inferno_apps/TalkingHead" target="_blank">code</a> / 
+                    <a href="https://download.is.tue.mpg.de/emote/EMOTE_SupMat_video.mp4" target="_blank">video</a> / 
+                    <button class="bibtex-toggle-btn" onclick="toggleBibtex('bibtex-emote')">BibTeX</button>
+                </div>
+                <div class="bibtex-container" style="margin-top: 12px;">
+                    <div class="bibtex" id="bibtex-emote" style="display: none;">@inproceedings{10.1145/3610548.3618183,
+author = {Dan\v{e}\v{c}ek, Radek and Chhatre, Kiran and Tripathi, Shashank and Wen, Yandong and Black, Michael and Bolkart, Timo},
+title = {Emotional Speech-Driven Animation with Content-Emotion Disentanglement},
+year = {2023},
+isbn = {9798400703157},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3610548.3618183},
+doi = {10.1145/3610548.3618183},
+abstract = {To be widely adopted, 3D facial avatars must be animated easily, realistically, and directly from speech signals. While the best recent methods generate 3D animations that are synchronized with the input audio, they largely ignore the impact of emotions on facial expressions. Realistic facial animation requires lip-sync together with the natural expression of emotion. To that end, we propose EMOTE &nbsp;(Expressive Model Optimized for Talking with Emotion), which generates 3D talking-head avatars that maintain lip-sync from speech while enabling explicit control over the expression of emotion. To achieve this, we supervise EMOTE with decoupled losses for speech (i.e., lip-sync) and emotion. These losses are based on two key observations: (1) deformations of the face due to speech are spatially localized around the mouth and have high temporal frequency, whereas (2) facial expressions may deform the whole face and occur over longer intervals. Thus we train EMOTE with a per-frame lip-reading loss to preserve the speech-dependent content, while supervising emotion at the sequence level. Furthermore, we employ a content-emotion exchange mechanism in order to supervise different emotions on the same audio, while maintaining the lip motion synchronized with the speech. To employ deep perceptual losses without getting undesirable artifacts, we devise a motion prior in the form of a temporal VAE. Due to the absence of high-quality aligned emotional 3D face datasets with speech, EMOTE is trained with 3D pseudo-ground-truth extracted from an emotional video dataset (i.e., MEAD). Extensive qualitative and perceptual evaluations demonstrate that EMOTE produces speech-driven facial animations with better lip-sync than state-of-the-art methods trained on the same data, while offering additional, high-quality emotional control.},
+booktitle = {SIGGRAPH Asia 2023 Conference Papers},
+articleno = {41},
+numpages = {13},
+keywords = {Computer Graphics, Computer Vision, Deep learning, Facial Animation, Speech-driven Animation},
+location = {Sydney, NSW, Australia},
+series = {SA '23}
+}</div>
+                    <button class="copy-btn" onclick="copyBibtex('bibtex-emote', this)" style="display: none;" id="copy-emote">Copy BibTeX</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4: Spatio-temporal priors -->
+        <div class="simple-project">
+            <div class="project-gif">
+                <img src="media/st3dmotion.gif" alt="Spatio-temporal priors">
+            </div>
+            <div class="project-info">
+                <div class="project-title">Spatio-temporal priors in 3D human motion</div>
+                <div class="project-authors">
+                    <a href="https://annadeichler.github.io/">Anna Deichler*</a>, 
+                    <a href="https://chhatrekiran.github.io/" target="_blank">Kiran Chhatre*</a>, 
+                    <a href="https://www.kth.se/profile/chpeters">Christopher Peters</a>, 
+                    <a href="https://www.kth.se/profile/beskow">Jonas Beskow</a><br>
+                    <small>(* denotes equal contribution)</small>
+                </div>
+                <div class="project-venue">IEEE International Conference on Development and Learning (StEPP) workshop, 2021</div>
+                <div class="project-buttons">
+                    <a href="https://sites.google.com/view/stepp21/contributions?authuser=0" target="_blank">website</a> / 
+                    <a href="http://dx.doi.org/10.13140/RG.2.2.28042.80327" target="_blank">paper</a> / 
+                    <button class="bibtex-toggle-btn" onclick="toggleBibtex('bibtex-st3d')">BibTeX</button>
+                </div>
+                <div class="bibtex-container" style="margin-top: 12px;">
+                    <div class="bibtex" id="bibtex-st3d" style="display: none;">@article{deichler2021spatio,
+  title={Spatio-temporal priors in 3D human motion},
+  author={Deichler, Anna and Chhatre, Kiran and Peters, Christopher and Beskow, Jonas},
+  year={2021}
+}</div>
+                    <button class="copy-btn" onclick="copyBibtex('bibtex-st3d', this)" style="display: none;" id="copy-st3d">Copy BibTeX</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acknowledgments Section -->
+    <div class="section">
+        <h2>Acknowledgments</h2>
+        <p class="abstract">
+            We thank <a href="https://se.linkedin.com/in/peiyang-zheng-212b541a6" class="author-link" target="_blank">Peiyang Zheng</a> and Julian Magnus Ley for their support with the technical setup of the user study. We also thank <a href="https://scholar.google.fr/citations?user=-y7mFAQAAAAJ&hl=fr" class="author-link" target="_blank">Tairan Yin</a> for insightful discussions, proofreading, and valuable feedback. This project has received funding from the European Union's Horizon 2020 research and innovation program under the Marie Skłodowska-Curie grant agreement No. 860768 (<a href="https://www.clipe-itn.eu/" class="author-link" target="_blank">CLIPE project</a>).
+        </p>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Emotional 3D Animation Generation in VR Project. All rights reserved.</p>
+    </div>
+</footer>

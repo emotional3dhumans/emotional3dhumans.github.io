@@ -1,0 +1,47 @@
+# Site settings
+title: "Emotional 3D Humans"
+description: "Emotional 3D Animation Generation in VR"
+url: "https://emotional3dhumans.github.io" 
+baseurl: "" 
+
+# Author information
+author:
+  name: "Kiran Chhatre, Renan Guarese, Andrii Matviienko, Christopher Peters"
+  email: "chhatre@kth.se" 
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Theme
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude files from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# Collections
+collections:
+  papers:
+    output: true
+    permalink: /:collection/:name/
+
+# SEO settings
+lang: en
+timezone: UTC
+
+github_username: emotional3dhumans

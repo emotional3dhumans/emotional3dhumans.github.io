@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title | escape }} - {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😊</text></svg>" type="image/svg+xml">
+    
+    <!-- SEO and Meta tags -->
+    {% seo %}
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #ffffff;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: #ffffff;
+            color: #1d1d1f;
+            padding: 120px 0 100px 0;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .title {
+            font-size: 5.5rem;
+            font-weight: 1000;
+            margin-bottom: 32px;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a5568 30%, #2d3748 60%, #1a202c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'San Francisco', system-ui, sans-serif;
+            position: relative;
+        }
+        
+        .title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            opacity: 0;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .title:hover::before {
+            opacity: 0.8;
+        }
+        
+        .emotional-text {
+            background: linear-gradient(90deg, 
+                #ff6b6b 0%, 
+                #ee5a24 20%, 
+                #ff9ff3 40%, 
+                #54a0ff 60%, 
+                #5f27cd 80%, 
+                #ff6b6b 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            position: relative;
+            animation: color-wave 4s ease-in-out infinite;
+        }
+        
+        @keyframes color-wave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .emotional-text::after {
+            content: '✨';
+            position: absolute;
+            top: -0.2em;
+            right: -0.3em;
+            font-size: 0.4em;
+            opacity: 0.6;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: rotate(0deg) scale(1); }
+            50% { opacity: 0.8; transform: rotate(180deg) scale(1.1); }
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 48px;
+            color: #424245;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+        
+        .authors {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #424245;
+            letter-spacing: 0.005em;
+        }
+        
+        .author-link {
+            color: #007aff;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .author-link:hover {
+            color: #0056cc;
+            border-bottom: 1px solid #0056cc;
+        }
+        
+        .affiliations {
+            font-size: 1.25rem;
+            color: #86868b;
+            margin-bottom: 48px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        
+        .affiliation-link {
+            color: #007aff;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .affiliation-link:hover {
+            color: #0056cc;
+            border-bottom: 1px solid #0056cc;
+        }
+        
+        .paper-links {
+            display: flex !important;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+            flex-wrap: nowrap !important;
+            flex-direction: row !important;
+            align-items: center;
+        }
+        
+        .paper-btn {
+            display: inline-block;
+            background-color: #1d1d1f;
+            color: white;
+            padding: 16px 26px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid #1d1d1f;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            flex-shrink: 0;
+            min-width: fit-content;
+            outline: none;
+        }
+        
+        .paper-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .paper-btn:hover::before {
+            left: 100%;
+        }
+        
+        .paper-btn:hover {
+            background-color: #ffffff;
+            color: #1d1d1f;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .paper-btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        
+        .section {
+            background: white;
+            margin: 80px 0;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            border-top: none;
+        }
+        
+        .section:first-child {
+            margin-top: 60px;
+        }
+        
+        .section h2 {
+            color: #1d1d1f;
+            margin-bottom: 64px;
+            font-size: 2.75rem;
+            font-weight: 600;
+            border-bottom: none;
+            padding-bottom: 0;
+            text-align: center;
+            letter-spacing: -0.04em;
+        }
+        
+        .abstract {
+            text-align: justify;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #424245;
+            font-weight: 300;
+            max-width: 950px;
+            margin: 0 auto;
+            letter-spacing: 0.015em;
+        }
+        
+        .teaser-container {
+            text-align: center;
+            margin: 40px auto;
+            max-width: 1600px;
+        }
+        
+        .teaser-placeholder {
+            width: 100%;
+            height: 500px;
+            background-color: #fafafa;
+            border: 1px solid #f0f0f0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #86868b;
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin: 40px 0;
+        }
+        
+        .video-container {
+            text-align: center;
+            margin: 40px auto;
+            max-width: 854px;
+        }
+        
+        .video-embed {
+            position: relative;
+            padding-bottom: 56.32318501171%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 0 20px rgba(0, 122, 255, 0.08);
+        }
+        
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+        }
+        
+        .video-caption {
+            margin-top: 24px;
+            font-size: 1.1rem;
+            color: #86868b;
+            text-align: center;
+        }
+        
+        .qualitative-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #fafafa;
+            border: 1px solid #f0f0f0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #86868b;
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin: 40px 0;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+        
+        .result-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .result-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+        
+        .bibtex-container {
+            margin: 32px 0;
+        }
+        
+        .bibtex {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 24px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #1d1d1f;
+            white-space: pre;
+            overflow-x: auto;
+            position: relative;
+            margin-bottom: 16px;
+        }
+        
+        .copy-btn {
+            background-color: #1d1d1f;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .copy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .copy-btn:hover::before {
+            left: 100%;
+        }
+        
+        .copy-btn:hover {
+            background-color: #333;
+            transform: translateY(-1px);
+        }
+        
+        .copy-btn.copied {
+            background-color: #28a745;
+        }
+        
+        .projects-grid {
+            display: grid;
+            gap: 32px;
+            margin: 40px 0;
+        }
+        
+        .project-item {
+            display: flex;
+            gap: 24px;
+            padding: 32px;
+            border: 1px solid #f0f0f0;
+            border-radius: 16px;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        
+        .project-item:hover {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+            border-color: #e0e0e0;
+        }
+        
+        .project-image {
+            flex: 0 0 140px;
+            height: 140px;
+            background: #f8f9fa;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #86868b;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 300;
+        }
+        
+        .project-content {
+            flex: 1;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .project-authors {
+            font-size: 1rem;
+            color: #424245;
+            margin-bottom: 8px;
+        }
+        
+        .project-venue {
+            font-size: 0.95rem;
+            color: #86868b;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+        
+        .project-description {
+            font-size: 1rem;
+            color: #1d1d1f;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        
+        .project-link {
+            color: #007aff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #007aff;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .project-link:hover::before {
+            left: 100%;
+        }
+        
+        .project-link:hover {
+            background-color: #007aff;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+        }
+        
+        .bibtex-toggle {
+            background: none;
+            border: 1px solid #86868b;
+            color: #86868b;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .bibtex-toggle:hover {
+            background-color: #86868b;
+            color: white;
+        }
+        
+        .project-bibtex {
+            display: none;
+            margin-top: 16px;
+        }
+        
+        .project-bibtex.show {
+            display: block;
+        }
+        
+        .bibtex-toggle-btn {
+            background-color: #f8f9fa;
+            color: #424245;
+            border: 1px solid #e0e0e0;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .bibtex-toggle-btn:hover {
+            background-color: #e9ecef;
+            border-color: #d0d7de;
+            color: #1d1d1f;
+        }
+        
+        .bibtex-toggle-btn.active {
+            background-color: #007aff;
+            color: white;
+            border-color: #007aff;
+        }
+        
+        /* Simple project layout styles */
+        .simple-project {
+            display: flex;
+            gap: 24px;
+            margin: 32px 0;
+            align-items: flex-start;
+        }
+        
+        .project-gif {
+            flex: 0 0 120px;
+            width: 120px;
+            height: 120px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .project-gif img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+        
+        .project-info {
+            flex: 1;
+        }
+        
+        .project-info .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .project-info .project-authors {
+            font-size: 1rem;
+            color: #424245;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        
+        .project-info .project-authors a {
+            color: #007aff;
+            text-decoration: none;
+        }
+        
+        .project-info .project-authors a:hover {
+            text-decoration: underline;
+        }
+        
+        .project-info .project-venue {
+            font-size: 0.95rem;
+            color: #86868b;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        
+        .project-info .project-buttons {
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        .project-info .project-buttons a {
+            color: #007aff;
+            text-decoration: none;
+        }
+        
+        .project-info .project-buttons a:hover {
+            text-decoration: underline;
+        }
+        
+        .bibtex-toggle-btn {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-family: inherit;
+            outline: none;
+        }
+        
+        .bibtex-toggle-btn:hover {
+            background: #0056cc;
+            transform: translateY(-1px);
+        }
+        
+        .bibtex-toggle-btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        
+        .bibtex-toggle-btn.active {
+            background: #0056cc;
+        }
+        
+        .bibtex-container {
+            position: relative;
+            margin-top: 8px;
+        }
+        
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-family: inherit;
+        }
+        
+        .copy-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
+        
+        .copy-btn.copied {
+            background: #17a2b8;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 80px 0 60px 0;
+            color: #86868b;
+            font-size: 0.9rem;
+            font-weight: 300;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 120px;
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3.5rem;
+                margin-bottom: 24px;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+                margin-bottom: 32px;
+            }
+            
+            .authors {
+                font-size: 1.3rem;
+            }
+            
+            .affiliations {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            header {
+                padding: 80px 0 60px 0;
+            }
+            
+            .section h2 {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+            
+            .paper-links {
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            
+            .project-item {
+                flex-direction: column;
+                padding: 24px;
+            }
+            
+            .simple-project {
+                flex-direction: column;
+                gap: 16px;
+                margin: 24px 0;
+            }
+            
+            .project-gif {
+                align-self: center;
+                flex: 0 0 auto;
+            }
+            
+            .project-image {
+                align-self: center;
+                flex: 0 0 auto;
+                width: 140px;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .abstract {
+                font-size: 1.1rem;
+            }
+        }
+            
+            .section {
+                margin: 60px 0;
+            }
+            
+            .section h2 {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+            
+            .abstract {
+                font-size: 1.15rem;
+                line-height: 1.75;
+            }
+            
+            header {
+                padding: 100px 0 80px 0;
+            }
+            
+            .paper-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .project-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .project-image {
+                flex: none;
+                width: 120px;
+                margin: 0 auto;
+            }
+            
+            .project-links {
+                justify-content: center;
+            }
+            
+            .paper-links {
+                gap: 12px !important;
+            }
+            
+            .paper-btn {
+                padding: 12px 18px !important;
+                font-size: 0.9rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    {{ content }}
+    
+    <script>
+        function copyBibtex(elementId, button) {
+            const bibtexElement = document.getElementById(elementId);
+            const text = bibtexElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        function toggleBibtex(elementId) {
+            const bibtexDiv = document.getElementById(elementId);
+            const button = event.target;
+            
+            // Find the corresponding copy button
+            let copyBtnId;
+            if (elementId.includes('bibtex-')) {
+                const projectKey = elementId.split('bibtex-')[1];
+                copyBtnId = 'copy-' + projectKey;
+            } else {
+                copyBtnId = 'copy-btn';
+            }
+            const copyBtn = document.getElementById(copyBtnId);
+            
+            if (bibtexDiv.style.display === 'none' || bibtexDiv.style.display === '') {
+                bibtexDiv.style.display = 'block';
+                if (copyBtn) copyBtn.style.display = 'inline-block';
+                button.textContent = 'Hide BibTeX';
+                button.classList.add('active');
+            } else {
+                bibtexDiv.style.display = 'none';
+                if (copyBtn) copyBtn.style.display = 'none';
+                button.textContent = 'BibTeX';
+                button.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
